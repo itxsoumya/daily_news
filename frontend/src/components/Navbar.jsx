@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 import Category from "./Category";
 
 const Navbar = () => {
-  
-
   const [searchInput, setSearchInput] = useState();
 
   const navigate = useNavigate();
@@ -18,7 +16,7 @@ const Navbar = () => {
   };
 
   console.log("open");
-  
+
   return (
     <div className="bg-pink-100 bg-opacity-40 blur-backdrop backdrop-blur-sm  fixed top-0 left-0 right-0 shadow-md">
       <div className="navbar bg-base-100x max-w-7xl mx-auto">
@@ -31,14 +29,36 @@ const Navbar = () => {
           </a>
           {/* category */}
           <ul className="text-zinc-800 hover:text-zinc-950 flex gap-4 overflow-y-hidden bg-green-300x max-lg:hidden">
-            <li className="hover:underline cursor-pointer decoration-4 underline-offset-4 decoration-gray-500" onClick={()=>navigate('/read/music')}>Music</li>
-            <li className="hover:underline cursor-pointer decoration-4 underline-offset-4 decoration-gray-500" onClick={()=>navigate('/read/sports')}>
-            Sports
+            <li
+              className="hover:underline cursor-pointer decoration-4 underline-offset-4 decoration-gray-500"
+              onClick={() => navigate("/read/music")}
+            >
+              Music
             </li>
-            <li className="hover:underline cursor-pointer decoration-4 underline-offset-4 decoration-gray-500" onClick={()=>navigate('/read/international')}>international</li>
-            <li className="hover:underline cursor-pointer decoration-4 underline-offset-4 decoration-gray-500" onClick={()=>navigate('/read/science')}>Science</li>
-            <li className="hover:underline cursor-pointer decoration-4 underline-offset-4 decoration-gray-500" onClick={()=>document.getElementById('my_modal_3').showModal()}>More ...</li>
-            
+            <li
+              className="hover:underline cursor-pointer decoration-4 underline-offset-4 decoration-gray-500"
+              onClick={() => navigate("/read/sports")}
+            >
+              Sports
+            </li>
+            <li
+              className="hover:underline cursor-pointer decoration-4 underline-offset-4 decoration-gray-500"
+              onClick={() => navigate("/read/international")}
+            >
+              international
+            </li>
+            <li
+              className="hover:underline cursor-pointer decoration-4 underline-offset-4 decoration-gray-500"
+              onClick={() => navigate("/read/science")}
+            >
+              Science
+            </li>
+            <li
+              className="hover:underline cursor-pointer decoration-4 underline-offset-4 decoration-gray-500"
+              onClick={() => document.getElementById("my_modal_3").showModal()}
+            >
+              More ...
+            </li>
           </ul>
         </div>
 
@@ -126,7 +146,7 @@ const Navbar = () => {
 
         {/* Menu icon */}
 
-        <label className="btn btn-circle swap swap-rotate lg:hidden" >
+        <label className="btn btn-circle swap swap-rotate lg:hidden">
           {/* this hidden checkbox controls the state */}
           <input type="checkbox" />
 
@@ -137,8 +157,7 @@ const Navbar = () => {
             width="32"
             height="32"
             viewBox="0 0 512 512"
-            onClick={()=>document.getElementById("my_modal_2").showModal()}
-            
+            onClick={() => document.getElementById("my_modal_2").showModal()}
           >
             <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
           </svg>

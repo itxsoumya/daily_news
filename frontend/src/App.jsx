@@ -12,6 +12,7 @@ import SearchResult from "./components/SearchResult";
 import MainMenu from "./components/MainMenu";
 import Category from "./components/Category";
 import CategoryWrapperForLargeScreen from "./components/CategoryWrapperForLargeScreen";
+import NewsLetter from "./components/NewsLetter";
 
 const App = () => {
   console.log("[+] App COmponent");
@@ -32,6 +33,8 @@ const App = () => {
           <Route path="/search/:item" element={<SearchResult/>}/>
         </Routes>
       </div>
+
+      <NewsLetter/>
 
       <Footer />
     </div>
