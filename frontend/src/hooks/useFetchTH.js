@@ -10,6 +10,7 @@ const useFetchTH = (url, options = {}) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true)
       try {
         const response = await axios.get(url);
         const text = response.data;
@@ -48,7 +49,7 @@ const useFetchTH = (url, options = {}) => {
       }
     };
     fetchData();
-  }, []);
+  }, [url]);
 
   return { data, loading, error };
 };

@@ -30,14 +30,14 @@ const Navbar = () => {
             Daily News
           </a>
           {/* category */}
-          <ul className="flex gap-4 overflow-y-hidden bg-green-300x max-lg:hidden">
-            <li>Music</li>
-            <li>
+          <ul className="text-zinc-800 hover:text-zinc-950 flex gap-4 overflow-y-hidden bg-green-300x max-lg:hidden">
+            <li className="hover:underline cursor-pointer decoration-4 underline-offset-4 decoration-gray-500" onClick={()=>navigate('/read/music')}>Music</li>
+            <li className="hover:underline cursor-pointer decoration-4 underline-offset-4 decoration-gray-500" onClick={()=>navigate('/read/sports')}>
             Sports
             </li>
-            <li>international</li>
-            <li>Entertainment</li>
-            <li className="cursor-pointer" onClick={()=>document.getElementById('my_modal_3').showModal()}>More</li>
+            <li className="hover:underline cursor-pointer decoration-4 underline-offset-4 decoration-gray-500" onClick={()=>navigate('/read/international')}>international</li>
+            <li className="hover:underline cursor-pointer decoration-4 underline-offset-4 decoration-gray-500" onClick={()=>navigate('/read/science')}>Science</li>
+            <li className="hover:underline cursor-pointer decoration-4 underline-offset-4 decoration-gray-500" onClick={()=>document.getElementById('my_modal_3').showModal()}>More ...</li>
             
           </ul>
         </div>
