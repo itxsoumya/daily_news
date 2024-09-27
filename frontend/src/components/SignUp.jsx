@@ -1,4 +1,4 @@
-const Signin = () => {
+const SignUp = () => {
   return (
     <div className="flex bg-red-100x  grow justify-center items-center font-sansx">
       <div className="flex justify-center self-center  ">
@@ -53,12 +53,12 @@ const Signin = () => {
                 type="submit"
                 className="w-full flex justify-center bg-blue-400  hover:bg-blue-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
               >
-                Sign in
+                Sign Up
               </button>
             </div>
           </div>
           <div className="pt-5 text-center text-gray-400 text-sm link hover:text-sky-500">
-            or Sign Up
+            or Sign In
           </div>
         </div>
       </div>
@@ -66,4 +66,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default SignUp;

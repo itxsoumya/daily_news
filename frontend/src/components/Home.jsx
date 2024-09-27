@@ -5,8 +5,6 @@ import { memo } from "react";
 import HomeSection from "./HomeSection";
 
 const Home = memo(() => {
-  
-
   console.log("[+] Home component");
 
   return (
@@ -19,14 +17,14 @@ const Home = memo(() => {
       <HomeSection
         rssUrl="/api/feeder/default.rss"
         onlyImg={true}
-        heading={"INDIA"}
+        heading={"india"}
         limit={6}
       />
       <div className="mt-10"></div>
       <HomeSection
         rssUrl="/api/news/international/feeder/default.rss"
         onlyImg
-        heading={"WORLD"}
+        heading={"world"}
         limit={6}
       />
 
@@ -34,7 +32,7 @@ const Home = memo(() => {
       <HomeSection
         rssUrl="/api/sport/feeder/default.rss"
         onlyImg
-        heading={"SPORTS"}
+        heading={"sports"}
         limit={6}
       />
       <div className="mt-10"></div>

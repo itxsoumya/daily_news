@@ -4,6 +4,7 @@ import HomeSection from "./HomeSection";
 
 const ReadMore = () => {
   const { topic } = useParams();
+  console.log(topic)
 
   const urlMap = {
     india: "/api/feeder/default.rss",
@@ -12,7 +13,8 @@ const ReadMore = () => {
     sports: "/api/sport/feeder/default.rss",
     entertainment: "/api/entertainment/feeder/default.rss",
     music:'/api/entertainment/music/feeder/default.rss',
-    science:'/api/sci-tech/science/feeder/default.rss'
+    science:'/api/sci-tech/science/feeder/default.rss',
+    "Life & Style":"/api/life-and-style/feeder/default.rss"
   };
 
   return (
