@@ -1,17 +1,30 @@
+import { useNavigate } from "react-router-dom";
+
 const SignUp = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex bg-red-100x  grow justify-center items-center font-sansx">
       <div className="flex justify-center self-center  ">
         <div className="p-12 sm:shadow-md sm:bg-gray-50 mx-auto rounded-lg w-100 bg-cyan-50x">
           <div className="mb-4">
             <h3 className="font-semibold text-3xl text-gray-800 font-oswald ">
-              Sign In
+              Sign Up
             </h3>
             <p className="text-gray-500 text-sm">
-              Please sign in to your account.
+              Please sign up for your account.
             </p>
           </div>
           <div className="space-y-5">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700 tracking-wide">
+                Name
+              </label>
+              <input
+                className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-blue-400"
+                type="text"
+                placeholder="enter your name"
+              />
+            </div>
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700 tracking-wide">
                 Email
@@ -49,15 +62,15 @@ const SignUp = () => {
               </div>
             </div>
             <div>
-              <button
-                type="submit"
-                className="w-full flex justify-center bg-blue-400  hover:bg-blue-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
-              >
+              <button type="submit" className="btn w-full btn-neutral">
                 Sign Up
               </button>
             </div>
           </div>
-          <div className="pt-5 text-center text-gray-400 text-sm link hover:text-sky-500">
+          <div
+            className="pt-5 text-center text-gray-400 text-sm link hover:text-sky-500"
+            onClick={() => navigate("/signin")}
+          >
             or Sign In
           </div>
         </div>
