@@ -12,6 +12,8 @@ import SearchResult from "./components/SearchResult";
 import MainMenu from "./components/MainMenu";
 import Category from "./components/Category";
 import CategoryWrapperForLargeScreen from "./components/CategoryWrapperForLargeScreen";
+import NewsLetter from "./components/NewsLetter";
+import SignUp from "./components/SignUp";
 
 const App = () => {
   console.log("[+] App COmponent");
@@ -28,10 +30,13 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<Signin />} />
+          <Route path="/signup" element={<SignUp/>} />
           <Route path="/read/:topic" element={<ReadMore />} />
           <Route path="/search/:item" element={<SearchResult/>}/>
         </Routes>
       </div>
+
+      {/* <NewsLetter/> */}
 
       <Footer />
     </div>

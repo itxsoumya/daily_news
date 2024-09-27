@@ -4,13 +4,17 @@ import HomeSection from "./HomeSection";
 
 const ReadMore = () => {
   const { topic } = useParams();
+  console.log(topic)
 
   const urlMap = {
     india: "/api/feeder/default.rss",
-    internetional: "/api/news/international/feeder/default.rss",
+    international: "/api/news/international/feeder/default.rss",
     world: "/api/news/international/feeder/default.rss",
     sports: "/api/sport/feeder/default.rss",
     entertainment: "/api/entertainment/feeder/default.rss",
+    music:'/api/entertainment/music/feeder/default.rss',
+    science:'/api/sci-tech/science/feeder/default.rss',
+    "Life & Style":"/api/life-and-style/feeder/default.rss"
   };
 
   return (
