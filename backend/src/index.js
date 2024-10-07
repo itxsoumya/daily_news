@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import userRoutes from "../src/routers/userRoutes.js";
+import { connectDB } from "./db.js";
 dotenv.config();
 
 const app = express();
@@ -10,6 +11,7 @@ app.use(express.json());
 
 app.use("/api/users", userRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server has started....`);
+app.listen(PORT, async () => {
+  console.log(`[+] Server has started....`);
+  await connectDB()
 });
