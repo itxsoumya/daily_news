@@ -1,14 +1,19 @@
 import express from "express";
 import { User } from "../db.js";
 import bcrypt from "bcryptjs";
-
+import {
+  validateSignin,
+  validateSignup,
+} from "../middlewares/validationMiddleware.js";
+import jwt from "jsonwebtoken";
+import { authenticateToken } from "../middlewares/authenticateToken.js";
 const router = express.Router();
 
 router.get("/ping", (req, res) => {
   return res.send("hellooo");
 });
 
-router.post("/signup", async (req, res) => {
+router.post("/signup", validateSignup, async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
@@ -31,7 +36,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-router.post("/signin", async (req, res) => {
+router.post("/signin", validateSignin, async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -39,10 +44,18 @@ router.post("/signin", async (req, res) => {
     if (!user) return res.status(400).send("Invalid email or password");
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).send("Invalid email or password");
+    if (!isMatch)
+      return res.status(400).json({ msg: "Invalid email or password" });
+
+    const token = jwt.sign(
+      { userId: user._id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
 
     res.json({
       msg: "signin succesfull",
+      token:"Bearer "+token
     });
   } catch (error) {
     res.status(500).json({
@@ -50,5 +63,9 @@ router.post("/signin", async (req, res) => {
     });
   }
 });
+
+router.post('/authtoken',authenticateToken,async (req,res)=>{
+  return res.json(req.user)
+})
 
 export default router;
