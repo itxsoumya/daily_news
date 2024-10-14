@@ -38,6 +38,7 @@ router.post("/signup", validateSignup, async (req, res) => {
 
 router.post("/signin", validateSignin, async (req, res) => {
   try {
+    console.log("[+] inside signin");
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
@@ -54,8 +55,13 @@ router.post("/signin", validateSignin, async (req, res) => {
     );
 
     res.json({
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      },
       msg: "signin succesfull",
-      token:"Bearer "+token
+      token: "Bearer " + token,
     });
   } catch (error) {
     res.status(500).json({
@@ -64,8 +70,12 @@ router.post("/signin", validateSignin, async (req, res) => {
   }
 });
 
-router.post('/authtoken',authenticateToken,async (req,res)=>{
-  return res.json(req.user)
-})
+router.post("/authtoken", authenticateToken, async (req, res) => {
+  return res.json({
+    id: req.user._id,
+    name: req.user.name,
+    email: req.user.email,
+  });
+});
 
 export default router;
