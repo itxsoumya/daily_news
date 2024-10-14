@@ -164,7 +164,7 @@ const Navbar = () => {
 
         <label className="btn btn-circle swap swap-rotate lg:hidden">
           {/* this hidden checkbox controls the state */}
-          <input type="checkbox" />
+          <input type="checkbox" id="menu_icon_checkbox"/>
 
           {/* hamburger icon */}
           <svg

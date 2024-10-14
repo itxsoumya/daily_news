@@ -9,19 +9,18 @@ const MainMenu = () => {
   return (
     <dialog id="my_modal_2" className="modal">
       <div className="modal-box bg-red-300x h-full">
-        <form method="dialog">
-          {/* if there is a button in form, it will close the modal */}
+        <form
+          method="dialog"
+          onClick={() => {
+            document.getElementById("menu_icon_checkbox").checked = false;
+          }}
+        >
           <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
             ✕
           </button>
         </form>
 
-        <div className="flex gap-5 mt-14">
-          {/* <div className="btn grow btn-neutral">Sign In</div>
-          <div className="btn grow">Sign Up</div> */}
-        </div>
-
-        <div className="flex flex-col bg-cyan-300x gap-1">
+        <div className="flex flex-col bg-cyan-300x gap-1 mt-14">
           {AuthUser ? (
             <>
               <div className="avatar placeholder bg-red-400x mx-auto">
@@ -69,8 +68,15 @@ const MainMenu = () => {
             </>
           ) : (
             <div className="flex gap-3">
-              <button className="btn btn-neutral grow" onClick={()=>navigate('/signup')}>Sign Up</button>
-              <button className="btn grow" onClick={()=>navigate('/signin')}>Sign In</button>
+              <button
+                className="btn btn-neutral grow"
+                onClick={() => navigate("/signup")}
+              >
+                Sign Up
+              </button>
+              <button className="btn grow" onClick={() => navigate("/signin")}>
+                Sign In
+              </button>
             </div>
           )}
         </div>
