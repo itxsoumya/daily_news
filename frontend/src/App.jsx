@@ -19,6 +19,7 @@ import { useState } from "react";
 import useAuthStore from "./state/useAuthStore";
 import axios from "axios";
 import { useEffect } from "react";
+import Logout from "./components/Logout";
 
 const App = () => {
   console.log("[+] App COmponent");
@@ -76,6 +77,7 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/read/:topic" element={<ReadMore />} />
           <Route path="/search/:item" element={<SearchResult />} />
+          <Route path="/logout" element={<Logout />} />
         </Routes>
       </div>
 
