@@ -14,6 +14,8 @@ import Category from "./components/Category";
 import CategoryWrapperForLargeScreen from "./components/CategoryWrapperForLargeScreen";
 import NewsLetter from "./components/NewsLetter";
 import SignUp from "./components/SignUp";
+import { Toaster } from "react-hot-toast";
+import { ToastBar } from "react-hot-toast";
 
 const App = () => {
   console.log("[+] App COmponent");
@@ -23,12 +25,13 @@ const App = () => {
       <Navbar />
       <SearchDialog/>
       <MainMenu/>
+      <Toaster position="bottom-right"/>
       
       <CategoryWrapperForLargeScreen/>
 
       <div className="flex-grow text-lg p-4 pt-20 bg-green-200x flex">
         <Routes>
-          <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<Home />} /> */}
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<SignUp/>} />
           <Route path="/read/:topic" element={<ReadMore />} />
