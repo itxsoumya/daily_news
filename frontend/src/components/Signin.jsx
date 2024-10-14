@@ -3,6 +3,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../state/useAuthStore";
+import { useEffect } from "react";
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -13,7 +14,11 @@ const Signin = () => {
 
   const userAuth = useAuthStore((state) => state);
 
-  // console.log(userAuth);
+  useEffect(() => {
+    if (userAuth.user) {
+      navigate("/");
+    }
+  }, [userAuth.user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,8 +31,8 @@ const Signin = () => {
       console.log(res.data);
       toast.dismiss();
       toast.success("You are logged in successfully");
-      
-      localStorage.setItem('jwtToken',res.data.token)
+
+      localStorage.setItem("jwtToken", res.data.token);
       userAuth.setUser(res.data.user);
       userAuth.setToken(res.data.token);
       navigate("/");

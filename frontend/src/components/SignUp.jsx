@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
+import useAuthStore from "../state/useAuthStore";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -10,6 +12,12 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const userAuth = useAuthStore((state) => state.user);
+  useEffect(() => {
+    if (userAuth) {
+      navigate("/");
+    }
+  }, [userAuth, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
