@@ -6,6 +6,7 @@ const MainMenu = () => {
   const AuthUser = useAuthStore((state) => state.user);
   console.log("menuuuu");
   const navigate = useNavigate();
+
   return (
     <dialog id="my_modal_2" className="modal">
       <div className="modal-box bg-red-300x h-full">
@@ -25,10 +26,12 @@ const MainMenu = () => {
             <>
               <div className="avatar placeholder bg-red-400x mx-auto">
                 <div className="bg-neutral text-neutral-content w-24 rounded-full">
-                  <span className="text-3xl">D</span>
+                  <span className="text-3xl">
+                    {AuthUser.name[0].toUpperCase()}
+                  </span>
                 </div>
               </div>
-              <div className="text-2xl  text-center break-words">John Doe</div>
+              <div className="text-2xl  text-center break-words">{AuthUser.name}</div>
               <div className="flex gap-2 mt-4 ">
                 <button className="btn w-1/2">
                   <svg
@@ -70,11 +73,22 @@ const MainMenu = () => {
             <div className="flex gap-3">
               <button
                 className="btn btn-neutral grow"
-                onClick={() => navigate("/signup")}
+                onClick={() => {
+                  document.getElementById("menu_icon_checkbox").checked = false;
+                  document.getElementById("my_modal_2").close();
+                  navigate("/signup");
+                }}
               >
                 Sign Up
               </button>
-              <button className="btn grow" onClick={() => navigate("/signin")}>
+              <button
+                className="btn grow"
+                onClick={() => {
+                  document.getElementById("menu_icon_checkbox").checked = false;
+                  document.getElementById("my_modal_2").close();
+                  navigate("/signin");
+                }}
+              >
                 Sign In
               </button>
             </div>

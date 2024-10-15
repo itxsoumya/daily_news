@@ -162,8 +162,12 @@ const Navbar = () => {
 
         {/* Menu icon */}
 
-        <label className="btn btn-circle swap swap-rotate lg:hidden">
-          {/* this hidden checkbox controls the state */}
+        <label className="btn btn-circle swap swap-rotate lg:hidden" onClick={()=>{
+          // if (!document.getElementById('menu_icon_checkbox').checked){
+            document.getElementById("my_modal_2").showModal()
+          // }
+        }}>
+          
           <input type="checkbox" id="menu_icon_checkbox"/>
 
           {/* hamburger icon */}
@@ -173,7 +177,7 @@ const Navbar = () => {
             width="32"
             height="32"
             viewBox="0 0 512 512"
-            onClick={() => document.getElementById("my_modal_2").showModal()}
+            // onClick={() => document.getElementById("my_modal_2").showModal()}
           >
             <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
           </svg>
