@@ -20,6 +20,7 @@ const SearchResult = () => {
     return <div>we have an error</div>;
   }
   console.log(data);
+  console.log(data.articles[0]);
   return (
     <div className="max-w-6xl mx-auto grow bg-white shadow-lg rounded-lg ">
       Search for: {item}
@@ -32,6 +33,7 @@ const SearchResult = () => {
                 mediaUrl={article.urlToImage}
                 pubDate={article.publishedAt}
                 key={index}
+                articleUrl={article.url}
               />
             ))
           : ""}

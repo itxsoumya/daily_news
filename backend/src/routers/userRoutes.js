@@ -1,5 +1,5 @@
 import express from "express";
-import { User } from "../db.js";
+import { SavedArticle, User } from "../db.js";
 import bcrypt from "bcryptjs";
 import {
   validateSignin,
@@ -76,6 +76,28 @@ router.post("/authtoken", authenticateToken, async (req, res) => {
     name: req.user.name,
     email: req.user.email,
   });
+});
+
+router.post("/saveArticle", authenticateToken, async (req, res) => {
+  try {
+    console.log('-------------------')
+    console.log(req.user)
+    const { mediaUrl, title, description, pubDate, articleUrl } =
+      req.body;
+    console.log(req.body);
+
+    const newarticle =  new SavedArticle({
+mediaUrl,title,description,pubDate,articleUrl,userId:req.user._id
+    })
+
+    const savedsrticle = await newarticle.save()
+    res.json({ savedsrticle });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      msg: "some problem",
+    });
+  }
 });
 
 export default router;

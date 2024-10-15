@@ -1,37 +1,86 @@
-const GridArticleCard = ({ mediaUrl, description, title, pubDate }) => {
-    const formattedDate = (pubDate) => {
-        const date = new Date(pubDate);
-    
-        const monthNames = [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ];
-    
-        const formattedDate = `${date.getDate()}-${
-          monthNames[date.getMonth()]
-        }-${date.getFullYear()}`;
-    
-        return formattedDate
-      };
+import toast from "react-hot-toast";
+import useAuthStore from "../state/useAuthStore";
+import axios from "axios";
+
+const GridArticleCard = ({
+  mediaUrl,
+  description,
+  title,
+  pubDate,
+  articleUrl,
+}) => {
+  const AuthUser = useAuthStore((state) => state.user);
+
+  const formattedDate = (pubDate) => {
+    const date = new Date(pubDate);
+
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    const formattedDate = `${date.getDate()}-${
+      monthNames[date.getMonth()]
+    }-${date.getFullYear()}`;
+
+    return formattedDate;
+  };
+
+  const handleSaveItem = async () => {
+    try {
+      if (!AuthUser) {
+        toast.error("Please Signin to save article");
+        return;
+      }
+
+      const res = axios.post(
+        "http://localhost:8080/api/users/saveArticle",
+        {
+          title,
+          mediaUrl,
+          description,
+          pubDate,
+          articleUrl,
+          userId: AuthUser.id,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("jwtToken"),
+          },
+        }
+      );
+
+      console.log(res.data);
+      toast.success("Article saved successfully");
+    } catch (err) {
+      console.log(err);
+      toast.error("Could not save this article due to some internal error");
+    }
+  };
+
   return (
     <div className="m-2 shadow-lg rounded-md bg-zinc-100 border hover:shadow-2xl flex flex-col">
       <figure>
         <img src={mediaUrl} alt="" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title font-oswald text-2xl">
-          
-          {title}
+        <h2
+          className="card-title font-oswald text-2xl hover:underline hover:cursor-pointer decoration-2"
+          onClick={() => {
+            console.log("cllicked");
+          }}
+        >
+          <a href={articleUrl}>{title}</a>
         </h2>
         <p className="">{description}</p>
         <div className="card-actions ">
@@ -40,20 +89,24 @@ const GridArticleCard = ({ mediaUrl, description, title, pubDate }) => {
               {formattedDate(pubDate)}
             </div>
           </div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="size-7"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-            />
-          </svg>
+
+          <div className="tooltip" data-tip="Click To Save">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-7 cursor-pointer "
+              onClick={() => handleSaveItem()}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+              />
+            </svg>
+          </div>
 
           <svg
             xmlns="http://www.w3.org/2000/svg"

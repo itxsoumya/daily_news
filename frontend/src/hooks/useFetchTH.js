@@ -10,19 +10,18 @@ const useFetchTH = (url, options = {}) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true)
+      setLoading(true);
       try {
         const response = await axios.get(url);
         const text = response.data;
 
-        // Parse the XML using fast-xml-parser
         const parser = new XMLParser({
-          ignoreAttributes: false, // To keep attributes in the parsed object
-          attributeNamePrefix: "", // Remove the prefix for easier access
+          ignoreAttributes: false,
+          attributeNamePrefix: "",
         });
         const jsonObj = parser.parse(text);
 
-        console.log(jsonObj)
+        console.log(jsonObj);
 
         // Extract the desired data
         const items = jsonObj.rss.channel.item.map((item) => {
@@ -34,7 +33,7 @@ const useFetchTH = (url, options = {}) => {
             link: item.link,
             description: item.description,
             pubDate: item.pubDate,
-            mediaUrl: mediaContent.url || null, // Extract the media URL
+            mediaUrl: mediaContent.url || null,
           };
         });
 

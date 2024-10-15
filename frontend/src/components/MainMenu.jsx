@@ -31,7 +31,9 @@ const MainMenu = () => {
                   </span>
                 </div>
               </div>
-              <div className="text-2xl  text-center break-words">{AuthUser.name}</div>
+              <div className="text-2xl  text-center break-words">
+                {AuthUser.name}
+              </div>
               <div className="flex gap-2 mt-4 ">
                 <button className="btn w-1/2">
                   <svg

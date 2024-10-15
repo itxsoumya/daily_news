@@ -17,7 +17,7 @@ const GridView = memo(({ articles, onlyImg, limit }) => {
     articles = articles.slice(0, limit);
   }
 
-  // console.log(articles[0]);
+  console.log(articles[0]);
 
   
 
@@ -26,7 +26,7 @@ const GridView = memo(({ articles, onlyImg, limit }) => {
       {articles != null
         ? articles.map((i, index) => {
             return (
-              <GridArticleCard title={i.title} description={i.description} pubDate={i.pubDate} key={index} mediaUrl={i.mediaUrl}  />
+              <GridArticleCard title={i.title} description={i.description} pubDate={i.pubDate} key={index} mediaUrl={i.mediaUrl} articleUrl={i.link} />
             );
           })
         : ""}
