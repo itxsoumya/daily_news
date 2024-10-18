@@ -41,18 +41,23 @@ const userSchema = new mongoose.Schema({
 const savedArticleSchema = new mongoose.Schema({
   mediaUrl: {
     type: String,
+    default: null,
   },
   title: {
     type: String,
+    default: null,
   },
   description: {
     type: String,
+    default: null,
   },
   pubDate: {
     type: Date,
+    default: null,
   },
   articleUrl: {
     type: String,
+    default: null,
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,

@@ -80,22 +80,65 @@ router.post("/authtoken", authenticateToken, async (req, res) => {
 
 router.post("/saveArticle", authenticateToken, async (req, res) => {
   try {
-    console.log('-------------------')
-    console.log(req.user)
-    const { mediaUrl, title, description, pubDate, articleUrl } =
-      req.body;
+    console.log("-------------------");
+    console.log(req.user);
+    const { mediaUrl, title, description, pubDate, articleUrl } = req.body;
     console.log(req.body);
 
-    const newarticle =  new SavedArticle({
-mediaUrl,title,description,pubDate,articleUrl,userId:req.user._id
-    })
+    const newarticle = new SavedArticle({
+      mediaUrl,
+      title,
+      description,
+      pubDate,
+      articleUrl,
+      userId: req.user._id,
+    });
 
-    const savedsrticle = await newarticle.save()
+    const savedsrticle = await newarticle.save();
     res.json({ savedsrticle });
   } catch (err) {
     console.log(err);
     res.status(400).json({
-      msg: "some problem",
+      msg: "Could not save due to some internal error",
+    });
+  }
+});
+
+router.delete("/deleteSavedArticle", authenticateToken, async (req, res) => {
+  try {
+    const { articleID } = req.body;
+
+    if (!articleID) {
+      return res.status("400").json({
+        msg: "Please provide articleID",
+      });
+    }
+
+    const article = await SavedArticle.findByIdAndDelete(articleID);
+
+    if (!article) {
+      return res.status(404).json({ msg: "No article with this ID" });
+    }
+
+    const articles = await SavedArticle.find({userId:req.user._id})
+    
+
+    return res.json(articles);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json("Could not delete due to some internal error");
+  }
+});
+
+router.get("/getSavedArticles", authenticateToken, async (req, res) => {
+  try {
+    const articles = await SavedArticle.find({ userId: req.user._id });
+
+    return res.json(articles);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      msg: "Could not fetch erticles due to some internal errors",
     });
   }
 });

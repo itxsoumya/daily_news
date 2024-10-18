@@ -9,7 +9,7 @@ const SearchDialog = () => {
     e.preventDefault();
     document.getElementById("my_modal_1").close();
     navigate(`/search/${searchItem}`);
-    setSearchItem('')
+    setSearchItem("");
   };
   return (
     <dialog id="my_modal_1" className="modal">
@@ -49,7 +49,6 @@ const SearchDialog = () => {
         <p className="py-4">Press ESC key or click the button below to close</p>
         <div className="modal-action">
           <form method="dialog">
-            
             <button className="btn">Close</button>
           </form>
         </div>

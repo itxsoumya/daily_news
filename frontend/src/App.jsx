@@ -3,16 +3,16 @@ import Footer from "./components/Footer";
 import Home from "./components/Home";
 
 import Navbar from "./components/Navbar";
-import Rough from "./components/Rough";
+
 import Signin from "./components/Signin";
 import { Routes } from "react-router-dom";
 import ReadMore from "./components/ReadMore";
 import SearchDialog from "./components/SearchDialog";
 import SearchResult from "./components/SearchResult";
 import MainMenu from "./components/MainMenu";
-import Category from "./components/Category";
+
 import CategoryWrapperForLargeScreen from "./components/CategoryWrapperForLargeScreen";
-import NewsLetter from "./components/NewsLetter";
+
 import SignUp from "./components/SignUp";
 import { Toaster } from "react-hot-toast";
 import { useState } from "react";
@@ -20,6 +20,7 @@ import useAuthStore from "./state/useAuthStore";
 import axios from "axios";
 import { useEffect } from "react";
 import Logout from "./components/Logout";
+import SavedArticles from "./components/SavedArticles";
 
 const App = () => {
   console.log("[+] App COmponent");
@@ -78,11 +79,10 @@ const App = () => {
 
           <Route path="/read/:topic" element={<ReadMore />} />
           <Route path="/search/:item" element={<SearchResult />} />
+          <Route path="/savedArticles" element={<SavedArticles />} />
           <Route path="/logout" element={<Logout />} />
         </Routes>
       </div>
-
-      {/* <NewsLetter/> */}
 
       <Footer />
     </div>

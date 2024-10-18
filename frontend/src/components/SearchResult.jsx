@@ -2,14 +2,9 @@ import { useParams } from "react-router-dom";
 import useFetchSearch from "../hooks/useFetchSearch";
 import GridArticleCard from "./GridArticleCard";
 import Skeleton from "./Skeleton";
-import { useEffect } from "react";
 
 const SearchResult = () => {
   const { item } = useParams();
-
-  //   useEffect(()=>{
-  //     refresh()
-  //   },[item])
 
   const { data, loading, error } = useFetchSearch(item);
   if (loading) {

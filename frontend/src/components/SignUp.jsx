@@ -29,18 +29,18 @@ const SignUp = () => {
         password,
       });
       console.log(res.data);
-      
+
       toast.success("Your account has been created successfully");
 
       navigate("/signin");
     } catch (err) {
       console.log(err);
-      // toast.error(err.message)
-     if(err.response.data.msg){
-      toast.error(err.response.data.msg);
-     }else{
-      toast.error("Some unknown error occured");
-     }
+
+      if (err.response.data.msg) {
+        toast.error(err.response.data.msg);
+      } else {
+        toast.error("Some unknown error occured");
+      }
     } finally {
       setLoading(false);
     }

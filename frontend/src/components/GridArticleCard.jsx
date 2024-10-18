@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 import useAuthStore from "../state/useAuthStore";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const GridArticleCard = ({
   mediaUrl,
@@ -8,9 +9,11 @@ const GridArticleCard = ({
   title,
   pubDate,
   articleUrl,
+  handleRemoveArticle,
+  articleID,
 }) => {
   const AuthUser = useAuthStore((state) => state.user);
-
+  const location = useLocation();
   const formattedDate = (pubDate) => {
     const date = new Date(pubDate);
 
@@ -60,7 +63,6 @@ const GridArticleCard = ({
         }
       );
 
-      console.log(res.data);
       toast.success("Article saved successfully");
     } catch (err) {
       console.log(err);
@@ -74,12 +76,7 @@ const GridArticleCard = ({
         <img src={mediaUrl} alt="" />
       </figure>
       <div className="card-body">
-        <h2
-          className="card-title font-oswald text-2xl hover:underline hover:cursor-pointer decoration-2"
-          onClick={() => {
-            console.log("cllicked");
-          }}
-        >
+        <h2 className="card-title font-oswald text-2xl hover:underline hover:cursor-pointer decoration-2">
           <a href={articleUrl}>{title}</a>
         </h2>
         <p className="">{description}</p>
@@ -89,24 +86,45 @@ const GridArticleCard = ({
               {formattedDate(pubDate)}
             </div>
           </div>
-
-          <div className="tooltip" data-tip="Click To Save">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-7 cursor-pointer "
-              onClick={() => handleSaveItem()}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-              />
-            </svg>
-          </div>
+          {location.pathname != "/savedArticles" ? (
+            <div className="tooltip" data-tip="Click To Save">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-7 cursor-pointer "
+                onClick={() => handleSaveItem()}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+            </div>
+          ) : (
+            <div className="tooltip" data-tip="Click To Remove">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-7 cursor-pointer"
+                onClick={() => {
+                  handleRemoveArticle(articleID);
+                }}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+            </div>
+          )}
 
           <svg
             xmlns="http://www.w3.org/2000/svg"

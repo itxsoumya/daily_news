@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
-import Category from "./Category";
 import useAuthStore from "../state/useAuthStore";
 
 const Navbar = () => {
@@ -18,11 +17,8 @@ const Navbar = () => {
 
   const isUser = useAuthStore((state) => state.user);
 
-  console.log("open");
-
-
   return (
-    <div className="bg-pink-100 bg-opacity-40 blur-backdrop backdrop-blur-sm  fixed top-0 left-0 right-0 shadow-md">
+    <div className="bg-pink-100 bg-opacity-40 blur-backdrop backdrop-blur-sm  fixed top-0 left-0 right-0 shadow-md z-[1000]">
       <div className="navbar bg-base-100x max-w-7xl mx-auto">
         <div className="flex-1">
           <a
@@ -101,10 +97,10 @@ const Navbar = () => {
                 role="button"
                 className="btn btn-ghost btn-circle avatar"
               >
-                <div className="w-10 rounded-full">
+                <div className="w-10 rounded-full ">
                   <img
-                    alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    alt="Profile"
+                    src="https://www.pngkey.com/png/detail/115-1150152_default-profile-picture-avatar-png-green.png"
                   />
                 </div>
               </div>
@@ -120,10 +116,12 @@ const Navbar = () => {
                   </a>
                 </li>
                 <li>
-                  <a>Settings</a>
+                  <a onClick={() => navigate("/savedArticles")}>
+                    Saved Articles
+                  </a>
                 </li>
                 <li>
-                  <a onClick={()=>navigate('/logout')}>Logout</a>
+                  <a onClick={() => navigate("/logout")}>Logout</a>
                 </li>
               </ul>
             </div>
@@ -162,13 +160,15 @@ const Navbar = () => {
 
         {/* Menu icon */}
 
-        <label className="btn btn-circle swap swap-rotate lg:hidden" onClick={()=>{
-          // if (!document.getElementById('menu_icon_checkbox').checked){
-            document.getElementById("my_modal_2").showModal()
-          // }
-        }}>
-          
-          <input type="checkbox" id="menu_icon_checkbox"/>
+        <label
+          className="btn btn-circle swap swap-rotate lg:hidden"
+          onClick={() => {
+            // if (!document.getElementById('menu_icon_checkbox').checked){
+            document.getElementById("my_modal_2").showModal();
+            // }
+          }}
+        >
+          <input type="checkbox" id="menu_icon_checkbox" />
 
           {/* hamburger icon */}
           <svg

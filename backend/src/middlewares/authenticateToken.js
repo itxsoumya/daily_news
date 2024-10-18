@@ -8,7 +8,7 @@ export const authenticateToken = async (req, res, next) => {
     const token = authHeader && authHeader.split(" ")[1];
     console.log("token", token);
     if (!token)
-      return res.sendStatus(401).json({
+      return res.status(401).json({
         msg: "Invalid Token",
       });
 

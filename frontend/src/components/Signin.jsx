@@ -38,8 +38,8 @@ const Signin = () => {
       navigate("/");
     } catch (err) {
       console.log(err.response.data);
-      // toast.error(err.message)
-      if (err.response.data) {
+
+      if (err.response.data.msg) {
         toast.error(err.response.data.msg);
       } else {
         toast.error("Some unknown error occured");
@@ -86,7 +86,7 @@ const Signin = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              
+
               <div>
                 <button
                   type="submit"
