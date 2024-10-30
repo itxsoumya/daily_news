@@ -21,6 +21,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import Logout from "./components/Logout";
 import SavedArticles from "./components/SavedArticles";
+import AboutUs from "./components/AboutUs";
 
 const App = () => {
   console.log("[+] App COmponent");
@@ -81,6 +82,7 @@ const App = () => {
           <Route path="/search/:item" element={<SearchResult />} />
           <Route path="/savedArticles" element={<SavedArticles />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/aboutus" element={<AboutUs/>} />
         </Routes>
       </div>
 

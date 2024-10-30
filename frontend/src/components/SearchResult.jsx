@@ -18,7 +18,7 @@ const SearchResult = () => {
   console.log(data.articles[0]);
   return (
     <div className="max-w-6xl mx-auto grow bg-white shadow-lg rounded-lg ">
-      Search for: {item}
+      <div className="px-4 font-oswald text-2xl">Search for: {item}</div>
       <div className="grid md:grid-cols-3 sm:grid-cols-2">
         {data != null
           ? data.articles.map((article, index) => (

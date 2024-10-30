@@ -69,6 +69,7 @@ const SignUp = () => {
                   placeholder="enter your name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  required
                 />
               </div>
               <div className="space-y-2">
@@ -81,6 +82,7 @@ const SignUp = () => {
                   placeholder="mail@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
               <div className="space-y-2">
@@ -93,6 +95,7 @@ const SignUp = () => {
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </div>
 
